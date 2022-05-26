@@ -19,7 +19,7 @@ const cors = require('cors');
 // });
 
 //secuirity middleware
-app.use(cors({ origin: ['http://localhost:5000', 'http://localhost:3000', 'https://asuman315.github.io'], credentials: true }));
+app.use(cors({ origin: ['http://localhost:3000', 'https://asmn-grocery-store.netlify.app'], credentials: true }));
 
 app.use(helmet())
 app.use(xss())
