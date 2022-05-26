@@ -14,9 +14,9 @@ const rateLimiter = require('express-rate-limit');
 const cors = require('cors');
 
 //test route
-app.get('/', (req, res) => {
-  res.status(200).send(`<h1>Asuman Sounds App API</h1>`);
-});
+// app.get('/', (req, res) => {
+//   res.status(200).send(`<h1>Asuman Sounds App API</h1>`);
+// });
 
 //secuirity middleware
 app.use(cors({ origin: ['http://localhost:5000', 'http://localhost:3000', 'https://asuman315.github.io'], credentials: true }));
