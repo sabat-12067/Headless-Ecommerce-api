@@ -13,11 +13,6 @@ const xss = require('xss-clean');
 const rateLimiter = require('express-rate-limit');
 const cors = require('cors');
 
-//test route
-app.get('/', (req, res) => {
-  res.status(200).send(`<h1>Asuman Sounds App API</h1>`);
-});
-
 //secuirity middleware
 app.use(cors({ origin: ['http://localhost:3000', 'https://asmn-grocery-store.netlify.app'], credentials: true }));
 
@@ -32,6 +27,11 @@ app.use(
 );
 
 app.use(express.json());
+
+//test route
+app.get('/', (req, res) => {
+  res.status(200).send(`<h1>Asuman Sounds App API</h1>`);
+});
 
 //route
 app.use('/auth', authRouter);
