@@ -2,9 +2,10 @@
   "name": "asuman-sounds-api",
   "version": "1.0.0",
   "description": "Backend for Asuman Sounds",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node servert GET /.js",
+    "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
