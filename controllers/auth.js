@@ -6,7 +6,16 @@ const jwt = require('jsonwebtoken');
 const signup = async (req, res, next) => {
  try {
   const { name, email, password } = req.body
-  //console.log(name, email, password);
+  
+  //password must be atleast 6 characters long
+  if(password.length < 6) {
+   return res.status(400).json({ msg: 'Password must be atleast 6 characters long' })
+  }
+
+ //password must contain a letters, a number and a special character
+  if(!password.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~])/)) {
+   return res.status(400).json({ msg: 'Password must contain letters with atleast one digit and a special character' })
+  }
 
   //generate number of values in harshed password
   const salt = await bcrypt.genSalt(10)
@@ -19,7 +28,7 @@ const signup = async (req, res, next) => {
   // Generate web token
   const token = jwt.sign({ userId: this._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_LIFETIME });
 
-  res.status(StatusCodes.CREATED).json({ user: { userId: customer._id, name: customer.name, email: customer.email }, token })
+  res.status(StatusCodes.CREATED).json({ user: { userId: customer._id, name: customer.name, email: customer.email, password: customer.password  }, token })
  } catch (error) {
   next(error)
  }
@@ -73,6 +82,15 @@ const update = async (req, res, next) => {
  try {
   const { name, email, password } = req.body
 
+  if (password.length < 6) {
+   return res.status(400).json({ msg: 'Password must be atleast 6 characters long' })
+  }
+
+  //password must contain a letters, a number and a special character
+  if (!password.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~])/)) {
+   return res.status(400).json({ msg: 'Password must contain letters with atleast one digit and a special character' })
+  }
+
   //harsh the new password if user updates their old one
   if(password) {
    const salt = await bcrypt.genSalt(10)
@@ -92,4 +110,5 @@ module.exports = {
  login,
  update
 }
+
 
