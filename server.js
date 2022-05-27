@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cartRouter = require('./routes/cart');
 
 require('dotenv').config();
 
@@ -35,6 +36,7 @@ app.get('/', (req, res) => {
 
 //route
 app.use('/auth', authRouter);
+app.use('/cart', cartRouter);
 
 const errorHandlerMiddleware = require('./error-middleware/error-handler');
 

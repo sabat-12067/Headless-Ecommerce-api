@@ -5,6 +5,8 @@
 
  The backend is hosted on heroku.
 
+ APIs are tested with postman
+
  The backend for products was built with a third party content management system - [strapi](https://strapi.io/).
 
  All user validations - for signup and login - was done on the server.
