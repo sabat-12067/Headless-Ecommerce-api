@@ -69,6 +69,8 @@ const login = async (req, res) => {
  //create token if email and password exist
  const token = jwt.sign({ userId: customer._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_LIFETIME });
 
+ console.log('login function called');
+
  //then send back name, email and token if user exists
  res.status(StatusCodes.OK).json({ user: { userId: customer._id, name: customer.name, email: customer.email }, token })
 

@@ -13,10 +13,11 @@ const addItemToCart = (req, res) => {
                 });
             } else {
                 res.status(201).json({
-                    message: 'Item added to cart successfully!',
+                    message: 'Your cart has been updated successfully!',
                     cart: cartItem
                 });
             }
+            console.log('addToItemToCart function called');
         });
     } catch (err) {
         res.status(500).json({
