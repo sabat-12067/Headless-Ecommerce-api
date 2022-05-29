@@ -1,0 +1,44 @@
+GET http://localhost:5000/cart/62935e67d1c5653c71ab2ce9
+token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjkzNWU2N2QxYzU2NTNjNzFhYjJjZTkiLCJpYXQiOjE2NTM4MzQ2ODQsImV4cCI6MTY1NjQyNjY4NH0.btwztMc0SAmnMf4DE_BZRvr5WV-ZzI6XupjQrrEokGI
+
+###
+
+###
+POST http://localhost:5000/auth/signup
+Content-type: application/json
+//leave this space
+{
+    "email": "chris@gmail.com",
+    "name": "Chris",
+    "password": "test1@"
+}
+
+###
+POST http://localhost:5000/auth/login
+Content-type: application/json
+
+{
+    "email": "chris@gmail.com",
+    "password": "test1@"
+}
+
+###
+POST http://localhost:5000/cart
+Content-type: application/json
+token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjkzNWNmMGQxYzU2NTNjNzFhYjJjZTciLCJpYXQiOjE2NTM4MzA0NTgsImV4cCI6MTY1NjQyMjQ1OH0.NzPZnTLRcQNpHcA2zNBADcSix9TUzK4qjvjSCM-064c
+
+{
+      "userId": "62935e67d1c5653c71ab2ce9",
+            "cartItemInfo": [{
+                "id": 1,
+                "name": "Chris's product 1"    
+            },
+            {
+                "id": 2,
+                "name": "Chris's product 3"    
+            }            
+            ]
+}
+
+
+# 62935cf0d1c5653c71ab2ce7 

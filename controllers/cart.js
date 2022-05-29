@@ -27,11 +27,12 @@ const addItemToCart = (req, res) => {
     }
    };
 
+
    const getAllCartItems = (req, res) => {
-    const { userId } = req.body;
-    //console.log(userId);
+    const { id } = req.params;
+    console.log(req.user);
     try {
-        Cart.find({ userId }, (err, cartItems) => {
+        Cart.find({ userId: id }, (err, cartItems) => {
             if (err) {
                 res.status(500).json({
                     message: 'Error occured while getting cart items',
@@ -40,7 +41,7 @@ const addItemToCart = (req, res) => {
                 res.status(200).json({
                     message: 'Cart items retrieved successfully!',
                     cart: cartItems,
-                    numberOfItems: cartItems.length
+                    //numberOfItems: cartItems.length
                 });
             }
         });

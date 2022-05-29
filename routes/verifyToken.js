@@ -7,18 +7,19 @@ const verifyToken = (req, res, next) => {
     if (typeof bearerHeader !== 'undefined') {
         const bearerToken = bearerHeader.split(' ')[1];
             jwt.verify(bearerToken, process.env.JWT_SECRET, (err, authData) => {
+                //if token is provided but invalid
                 if (err) {
-                    res.status(403).json({
-                        message: 'Bearer token not provided or Invalid!'
+                    res.status(StatusCodes.FORBIDDEN).json({
+                        message: 'Invalid token!'
                     })
                 }
-                console.log('Bearer Token validated successfully!');
                 req.authData = authData;
                 next();
             });
     } else {
-        res.sendStatus(401).json({
-            message: 'You are not authenticated!'
+        //if no token is provided
+        res.status(StatusCodes.UNAUTHORIZED).json({
+            message: 'You are unauthorized! You have no access to this resource!'
         });
     }
 };

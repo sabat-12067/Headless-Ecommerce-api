@@ -5,7 +5,7 @@ const { addItemToCart, deleteItemFromCart, getAllCartItems } = require('../contr
 
 router.post('/', verifyToken, addItemToCart)
 router.delete('/:id', verifyToken, deleteItemFromCart)
-router.get('/', verifyToken, getAllCartItems)
+router.get('/:id', verifyToken, getAllCartItems)
 //router.post('/login', login)
 
 module.exports = router
