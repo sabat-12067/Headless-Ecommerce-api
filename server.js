@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const cartRouter = require('./routes/cart');
 
 require('dotenv').config();
 
@@ -8,6 +7,8 @@ require('dotenv').config();
 const connectDB = require('./database/connectdb');
 //router
 const authRouter = require('./routes/auth');
+const stripeRouter = require('./routes/stripe');
+
 //extra secuirity packages
 const helmet = require('helmet');
 const xss = require('xss-clean');
@@ -36,7 +37,7 @@ app.get('/', (req, res) => {
 
 //route
 app.use('/auth', authRouter);
-app.use('/cart', cartRouter);
+app.use('/stripe', stripeRouter);
 
 const errorHandlerMiddleware = require('./error-middleware/error-handler');
 

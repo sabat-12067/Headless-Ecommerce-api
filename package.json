@@ -18,9 +18,10 @@
     "http-status-codes": "^2.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.4",
+    "stripe": "^9.6.0",
     "xss-clean": "^0.1.1"
   },
-    "engines": {
+  "engines": {
     "node": "16.14.0"
   }
 }
