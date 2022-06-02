@@ -16,5 +16,6 @@
  - Express
  - MongoDb
  - Mongoose
+ - Stripe
 
  //https://github.com/asuman315/asuman-sounds-api*/
