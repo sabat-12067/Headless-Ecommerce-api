@@ -42,3 +42,14 @@ token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjkzNWNmMGQxY
 
 
 # 62935cf0d1c5653c71ab2ce7 
+
+###
+POST http://localhost:5000/stripe/payment-intent
+Content-type: application/json
+
+{
+    "cartItem": {
+        "email": "chris@gmail.com",
+        "price": "10.00",
+    }
+}    
