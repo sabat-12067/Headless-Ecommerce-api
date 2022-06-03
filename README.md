@@ -1,8 +1,7 @@
 # API FOR [ASUMAN SOUNDS STORE]('https://asmn-grocery-store.netlify.app)
 
 ## OVERVIEW
- This is a REST API built with nodejs. I created it to handle user authentication and persisting items that a user to the cart.
-
+ This is a REST API built with nodejs. I created it to handle user authentication and stripe payment integration.
  The backend is hosted on heroku.
 
  APIs are tested with postman
@@ -16,6 +15,3 @@
  - Express
  - MongoDb
  - Mongoose
- - Stripe
-
- //https://github.com/asuman315/asuman-sounds-api*/
