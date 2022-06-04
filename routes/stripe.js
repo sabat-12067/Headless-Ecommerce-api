@@ -74,12 +74,13 @@ const calculateOrderAmount = async (info) => {
 
 
 router.post('/payment-intent', async (req, res) => {
+  console.log('payment intent called');
   const info = req.body;
   const { email } = info;
   let totalAmount = await calculateOrderAmount(info);
-  totalAmount = ((totalAmount * 100) / 100 ).toFixed(2);
- // console.log('Total amount:', totalAmount);
   try {
+    totalAmount = ((totalAmount * 100) / 100 ).toFixed(2);
+    console.log('Total amount:', totalAmount);
     const paymentIntent = await stripe.paymentIntents.create({
       amount: totalAmount * 100,
       currency: 'usd',
