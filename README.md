@@ -10,6 +10,8 @@
 
  All user validations - for signup and login - was done on the server.
 
+ Calculations for the total amount of items in cart were done on the back end for secuirity reasons.
+
  ### Built with
  - Node.js
  - Express
