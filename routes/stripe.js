@@ -78,8 +78,9 @@ router.post('/payment-intent', async (req, res) => {
   const info = req.body;
   const { email } = info;
   let totalAmount = await calculateOrderAmount(info);
+  totalAmount = Math.round(totalAmount * 100);
+  console.log('Total Amount: ', totalAmount);
   try {
-    totalAmount = ((totalAmount * 100) / 100 ).toFixed(2);
   //  console.log('Total amount:', totalAmount);
     const paymentIntent = await stripe.paymentIntents.create({
       amount: totalAmount * 100,
