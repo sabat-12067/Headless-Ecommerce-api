@@ -69,7 +69,6 @@ const calculateOrderAmount = async (info) => {
       }
     })
   }
-  console.log('Unrounded Total Amount: ', totalAmount)
   return totalAmount;
 }
 
@@ -86,7 +85,8 @@ router.post('/payment-intent', async (req, res) => {
   //Math.round((totalAmount * 100) / 100).toFixed(2);
   try {
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: totalAmount * 100,
+      //.toFixed(2).replace(/(\.0+|0+)$/, '') removes excess trailing zeros like 2.00000 to 2.00
+      amount: (totalAmount * 100).toFixed(2).replace(/(\.0+|0+)$/, ''),
       currency: 'usd',
       payment_method_types: ['card'],
       receipt_email: email,
