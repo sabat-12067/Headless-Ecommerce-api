@@ -69,25 +69,28 @@ const calculateOrderAmount = async (info) => {
       }
     })
   }
+  console.log('Unrounded Total Amount: ', totalAmount)
   return totalAmount;
 }
 
+function roundToTwo(num) {
+  return +(Math.round(num + "e+2") + "e-2");
+}
 
 router.post('/payment-intent', async (req, res) => {
   console.log('payment intent called');
   const info = req.body;
   const { email } = info;
   let totalAmount = await calculateOrderAmount(info);
-  totalAmount = Math.round(totalAmount * 100);
-  console.log('Total Amount: ', totalAmount);
+  totalAmount = roundToTwo(totalAmount);
+  //Math.round((totalAmount * 100) / 100).toFixed(2);
   try {
-  //  console.log('Total amount:', totalAmount);
     const paymentIntent = await stripe.paymentIntents.create({
       amount: totalAmount * 100,
       currency: 'usd',
       payment_method_types: ['card'],
       receipt_email: email,
-      description: 'Asuman Sounds Store',
+      description: 'Thanks for supporting Asuman Sounds',
     });
     const orderNumber = Math.floor(Math.random() * 1000000);
     res.status(200).json({
