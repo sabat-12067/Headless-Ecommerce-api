@@ -3,10 +3,10 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const axios = require('axios');
 
 const calculateOrderAmount = async (info) => {
- // console.log(info);
+  //console.log(info);
   const { idAndQuantity, deliveryMethod, isAddToCartBtnClicked } = info;
   const response = await axios.get(
-    'https://asmn-shopping-cart.herokuapp.com/api/shopping-carts?populate=*'
+    'https://asmn-shopping-cart.herokuapp.com/api/audioproducts?pagination[start]=0&pagination[limit]=100&populate=*'
   );
   const products = await response.data.data;
   // console.log(products.map(product => product.attributes.name));
@@ -14,6 +14,7 @@ const calculateOrderAmount = async (info) => {
   let totalAmount = 0;
   if (isAddToCartBtnClicked) {
     products.filter(product => {
+      console.log('product id: ', product.id);
       idAndQuantity.map(idAndQuantityItem => {
         if (product.id.toString() === idAndQuantityItem.id) {
           const price = product.attributes.price;
@@ -77,15 +78,16 @@ function roundToTwo(num) {
 }
 
 router.post('/payment-intent', async (req, res) => {
-  console.log('payment intent called');
+  //console.log('payment intent called');
   const info = req.body;
   const { email } = info;
   let totalAmount = await calculateOrderAmount(info);
   totalAmount = roundToTwo(totalAmount);
   //Math.round((totalAmount * 100) / 100).toFixed(2);
+  //console.log('total Amount', totalAmount);
   try {
     const paymentIntent = await stripe.paymentIntents.create({
-      //.toFixed(2).replace(/(\.0+|0+)$/, '') removes excess trailing zeros like 2.00000 to 2.00
+      // ".toFixed(2).replace(/(\.0+|0+)$/, '')" removes excess trailing zeros like 2.00000 to 2.00
       amount: (totalAmount * 100).toFixed(2).replace(/(\.0+|0+)$/, ''),
       currency: 'usd',
       payment_method_types: ['card'],
@@ -100,7 +102,7 @@ router.post('/payment-intent', async (req, res) => {
   //  console.log(orderNumber);
   } catch (error) {
     res.status(500).json({ error });
-    console.log(error);
+     //console.log(error);
   }
 });
 
