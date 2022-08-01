@@ -16,7 +16,7 @@ const rateLimiter = require('express-rate-limit');
 const cors = require('cors');
 
 //secuirity middleware
-app.use(cors({ origin: ['http://localhost:3000', 'https://asmn-grocery-store.netlify.app'], credentials: true }));
+app.use(cors({ origin: ['http://localhost:3000', 'https://asmn-grocery-store.netlify.app', 'https://asumansounds.com'], credentials: true }));
 
 app.use(helmet())
 app.use(xss())

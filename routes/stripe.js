@@ -95,6 +95,7 @@ router.post('/payment-intent', async (req, res) => {
       description: 'Thanks for supporting Asuman Sounds',
     });
     const orderNumber = Math.floor(Math.random() * 1000000);
+    console.log('orderNumber', orderNumber);
     res.status(200).json({
       clientSecret: paymentIntent.client_secret,
       orderNumber,
