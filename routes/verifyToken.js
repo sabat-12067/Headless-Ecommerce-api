@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { StatusCodes } = require('http-status-codes')
 
-const verifyToken = (req, res, next) => {
+const verifyToken = (req, res) => {
     const bearerHeader = req.headers.token;
 
     if (typeof bearerHeader !== 'undefined') {
@@ -14,7 +14,7 @@ const verifyToken = (req, res, next) => {
                     })
                 }
                 req.authData = authData;
-                next();
+               // next();
             });
     } else {
         //if no token is provided

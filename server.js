@@ -8,6 +8,7 @@ const connectDB = require('./database/connectdb');
 //router
 const authRouter = require('./routes/auth');
 const stripeRouter = require('./routes/stripe');
+const validateTokenRouter = require('./routes/validateToken')
 
 //extra secuirity packages
 const helmet = require('helmet');
@@ -35,9 +36,10 @@ app.get('/', (req, res) => {
   res.status(200).send(`<h1>Asuman Sounds App API</h1>`);
 });
 
-//route
+//routes
 app.use('/auth', authRouter);
 app.use('/stripe', stripeRouter);
+app.use('/auth', validateTokenRouter)
 
 const errorHandlerMiddleware = require('./error-middleware/error-handler');
 
