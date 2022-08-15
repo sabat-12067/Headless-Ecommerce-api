@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
 //routes
 app.use('/auth', authRouter);
 app.use('/stripe', stripeRouter);
-app.use('/auth', validateTokenRouter)
+app.use('/token', validateTokenRouter)
 
 const errorHandlerMiddleware = require('./error-middleware/error-handler');
 

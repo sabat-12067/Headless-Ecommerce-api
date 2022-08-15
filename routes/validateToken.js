@@ -15,12 +15,12 @@ const router = require('express').Router();
 //  }); 
 // });
 
-router.get('/validate-token', (req, res) => 
-{
- const bearerHeader = req.headers.token;
+router.post('/validate-token', (req, res) => {
+ //const bearerHeader = req.headers.token;
+ const bearerToken = req.body.token;
 
- if (typeof bearerHeader !== 'undefined') {
-  const bearerToken = bearerHeader.split(' ')[1];
+ if (typeof bearerToken !== 'undefined') {
+  // const bearerToken = bearerHeader.split(' ')[1];
   jwt.verify(bearerToken, process.env.JWT_SECRET, (err, authData) => {
    //if token is provided but invalid
    if (err) {
@@ -28,8 +28,7 @@ router.get('/validate-token', (req, res) =>
      message: 'Invalid token!'
     })
    }
-   req.authData = authData;
-   // next();
+   res.status(200).json({ msg: 'Token verified' })
   });
  } else {
   //if no token is provided
@@ -38,7 +37,6 @@ router.get('/validate-token', (req, res) =>
   });
  }
 }
-
 )
 
 

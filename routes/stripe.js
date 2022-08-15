@@ -14,7 +14,6 @@ const calculateOrderAmount = async (info) => {
   let totalAmount = 0;
   if (isAddToCartBtnClicked) {
     products.filter(product => {
-      console.log('product id: ', product.id);
       idAndQuantity.map(idAndQuantityItem => {
         if (product.id.toString() === idAndQuantityItem.id) {
           const price = product.attributes.price;

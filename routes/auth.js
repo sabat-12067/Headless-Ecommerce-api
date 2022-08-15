@@ -7,6 +7,5 @@ const { login, signup, update } = require('../controllers/auth');
 router.post('/signup', signup)
 router.post('/login', login)
 router.put('/update/:id', verifyToken, update)
-router.post
 
 module.exports = router
