@@ -1,4 +1,4 @@
-# API FOR [ASUMAN SOUNDS STORE]('https://asmn-grocery-store.netlify.app)
+# API FOR HEADLESS ECOMMERCE STORE
 
 ## OVERVIEW
  This is a REST API built with nodejs. I created it to handle user authentication and stripe payment integration.
